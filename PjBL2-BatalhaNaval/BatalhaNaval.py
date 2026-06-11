@@ -8,10 +8,10 @@ c = 0
 embarcacao = 0
 direcao = 0
 string_alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-marca_X = "[bright_red]X[/bright_red]"
+marca_X = "[yellow]+[/yellow]"
 marca_x = "[orange1]X[/orange1]"
 
-#cria matriz A
+#cria matriz A e B 
 while True:
   tamanho_matriz = input("(min:10x10, max:26x26)\nQual o tamanho da matriz desejado?: ")
   if "x" not in tamanho_matriz:
@@ -27,6 +27,7 @@ while True:
     else:
       break
 matrizA = [["~"] * coluna_matriz for _ in range(linha_matriz)]
+matrizB = [["~"] * coluna_matriz for _ in range(linha_matriz)]
 matrizN = []
 
 #cria string alfabeto
@@ -57,7 +58,19 @@ def valida_borda(a,b):
     a = borda
   return a,b
 
-def valida_embarcacao():
+def valida_embarcacao(e,t,d):
+  if d == 'h':
+    if t+c > coluna_matriz:
+      print("Embarcação fora da matriz, insira em uma posição válida.")
+    else:
+      for i in range(t):
+        matrizA[l][c+i] = e
+  elif d == 'v':
+    if t+l > linha_matriz:
+      print("Embarcação fora da matriz, insira em uma posição válida.")
+    else:
+      for i in range(t):
+        matrizA[l+i][c] = e
   print("")
 
 def embarcacoes():
@@ -67,8 +80,8 @@ def embarcacoes():
     print()
     match embarcacao:
       case '1':
-
-        print("case1")
+        valida_embarcacao('P',5,'v')
+        printA()
       case '2':
         print("case2")
       case '3':
@@ -80,6 +93,7 @@ def embarcacoes():
       case '6':
         print("case6")
       case '0':
+        cache_posicao = matrizA[l][c]
         matrizA[l][c] = marca_X
         printA()
         matrizA[l][c] = cache_posicao
