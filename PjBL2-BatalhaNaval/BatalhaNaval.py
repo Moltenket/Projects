@@ -8,7 +8,6 @@ c = 0
 embarcacao = 0
 direcao = 0
 string_alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-marca_X = "[yellow]+[/yellow]"
 marca_x = "[orange1]X[/orange1]"
 
 #cria matriz A e B 
@@ -64,13 +63,13 @@ def valida_embarcacao(e,t,d):
       print("Embarcação fora da matriz, insira em uma posição válida.")
     else:
       for i in range(t):
-        matrizA[l][c+i] = e
+        matrizA[l][c+i] = f'[white]{e}[/white]'
   elif d == 'v':
     if t+l > linha_matriz:
       print("Embarcação fora da matriz, insira em uma posição válida.")
     else:
       for i in range(t):
-        matrizA[l+i][c] = e
+        matrizA[l+i][c] = f'[white]{e}[/white]'
   print("")
 
 def embarcacoes():
@@ -83,18 +82,20 @@ def embarcacoes():
         valida_embarcacao('P',5,'v')
         printA()
       case '2':
-        print("case2")
+        valida_embarcacao('E',4,'v')
+        printA()
       case '3':
-        print("case3")
+        valida_embarcacao('C',3,'v')
+        printA()
       case '4':
-        print("case4")
+        valida_embarcacao('S',3,'v')
+        printA()
       case '5':
-        print("case5")
-      case '6':
-        print("case6")
+        valida_embarcacao('D',2,'v')
+        printA()
       case '0':
         cache_posicao = matrizA[l][c]
-        matrizA[l][c] = marca_X
+        matrizA[l][c] = "[yellow]+[/yellow]"  
         printA()
         matrizA[l][c] = cache_posicao
         break
@@ -112,28 +113,28 @@ while True:
       l-=1
       l, c = valida_borda(l,c)
       cache_posicao = matrizA[l][c]
-      matrizA[l][c] = marca_X
+      matrizA[l][c] = "[yellow]+[/yellow]"
       printA()
       matrizA[l][c] = cache_posicao
     case "s"|"S":
       l+=1
       l, c = valida_borda(l,c)
       cache_posicao = matrizA[l][c]
-      matrizA[l][c] = marca_X
+      matrizA[l][c] = "[yellow]+[/yellow]"
       printA()
       matrizA[l][c] = cache_posicao
     case "a"|"A":
       c -=1
       l, c = valida_borda(l,c)
       cache_posicao = matrizA[l][c]
-      matrizA[l][c] = marca_X
+      matrizA[l][c] = "[yellow]+[/yellow]"
       printA()
       matrizA[l][c] = cache_posicao
     case "d"|"D":
       c +=1
       l, c = valida_borda(l,c)
       cache_posicao = matrizA[l][c]
-      matrizA[l][c] = marca_X
+      matrizA[l][c] = "[yellow]+[/yellow]"
       printA()
       matrizA[l][c] = cache_posicao
     case "":
