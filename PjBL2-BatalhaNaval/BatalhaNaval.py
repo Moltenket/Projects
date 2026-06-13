@@ -1,4 +1,3 @@
-from random import randint
 from rich.console import Console
 console = Console(highlight=False)
 
@@ -8,7 +7,6 @@ c = 0
 embarcacao = 0
 direcao = 0
 string_alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-marca_x = "[orange1]X[/orange1]"
 
 #cria matriz A e B 
 while True:
@@ -57,6 +55,7 @@ def valida_borda(a,b):
     a = borda
   return a,b
 
+#valida embarcao e printa
 def valida_embarcacao(e,t,d):
   if d == 'h':
     if t+c > coluna_matriz:
@@ -72,27 +71,35 @@ def valida_embarcacao(e,t,d):
         matrizA[l+i][c] = f'[white]{e}[/white]'
   print("")
 
+#seletor de embarcações
 def embarcacoes():
   while True:
     print("1 - Porta-aviões 5\n2 - Encouraçado 4\n3 - Cruzador 3\n4 - Submarino 3\n5 - Destroyer 2\n")
     embarcacao = input("Qual embarcação deseja inserir? 0 para sair: ")
     print()
+    direcao = input("(h ou v)\nQual direção?: ")
+    print()
     match embarcacao:
       case '1':
-        valida_embarcacao('P',5,'v')
+        valida_embarcacao('P',5,direcao)
         printA()
+        break
       case '2':
-        valida_embarcacao('E',4,'v')
+        valida_embarcacao('E',4,direcao)
         printA()
+        break
       case '3':
-        valida_embarcacao('C',3,'v')
+        valida_embarcacao('C',3,direcao)
         printA()
+        break
       case '4':
-        valida_embarcacao('S',3,'v')
+        valida_embarcacao('S',3,direcao)
         printA()
+        break
       case '5':
-        valida_embarcacao('D',2,'v')
+        valida_embarcacao('D',2,direcao)
         printA()
+        break
       case '0':
         cache_posicao = matrizA[l][c]
         matrizA[l][c] = "[yellow]+[/yellow]"  
@@ -103,7 +110,7 @@ def embarcacoes():
         print("Opção inválida")
 
 
-#move o seletor (x) na matriz
+#move o seletor (+) na matriz
 printA()
 while True:
   seletor = input("Enter para por uma embarcação\nWASD para mover, 0 para sair: ")
